@@ -1,18 +1,3 @@
-class Links {
-    constructor(title, url, author) {
-        let typeOfUrl = url;
-        // check if the url starts with "http://" or "https://", if it is "http://", then it added to its beginning.
-
-        if (!typeOfUrl.startsWith("http://") || !typeOfUrl.startsWith("https://")) {
-            typeOfUrl = `http://${typeOfUrl}`;
-        }
-
-        // link properties
-        this.title = title;
-        this.url = typeOfUrl;
-        this.author = author;
-        }
-    }
     //Here we initialize the link within an array
     let link = [
         {
@@ -48,13 +33,13 @@ class Links {
     0 : Quite
     `);
 
-    // to show the links
+    // to show the linksadde
     switch (linksMenu) {
         case "1":
             for (let i = 0; i < link.length; i++) {
                 let myLinks = `
                 Title : ${link[i].title}
-                url : ${link[i].typeOfUrl} 
+                url : ${link[i].url} 
                 author : ${link[i].author}
                 `;
                 alert(myLinks);
@@ -62,10 +47,27 @@ class Links {
             break;
         case "2": 
             // the user asked to enter new link to add new array
-            const title = prompt("Enter the link title:");
-            const url = prompt("Enter the link url:");
-            const author = prompt("Enter the link author:");
-            link.push(new Links(title, url, author));
+            let newTitle = prompt("Enter the link title:");
+            let newUrl = prompt("Enter the link url:");
+            let newAuthor = prompt("Enter the link author:");
+            if (!newUrl.startsWith("http://") || !newUrl.startsWith("https://")) {
+             newUrl = `http://${newUrl}`;
+         }
+
+            let newLink = {
+            title : newTitle,
+            url : newUrl,
+            author : newAuthor,
+            };
+            link.push(newLink);
+            for (let i = 0; i < link.length; i++) {
+                let myLinks = `
+                Title : ${link[i].title}
+                url : ${link[i].url} 
+                author : ${link[i].author}
+                `;
+                alert(myLinks);
+            }
             break;
         case "3": 
         // Remove an existing link from array
