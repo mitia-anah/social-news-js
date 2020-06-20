@@ -24,17 +24,20 @@
     ];
   console.log(link);
     // This prompt let the user to choose until they quit
-    let linksMenu = prompt(`
+    const menuLinks = prompt(`
     Choose an option:
 
     1 : Show links
     2 : Add links
     3 : Remove a link
-    0 : Quite
+    0 : Quit
     `);
 
-    // to show the linksadde
-    switch (linksMenu) {
+    let newLink = Number(prompt(menuLinks));
+
+    // to show the links added
+    while (newLink !== 0) {
+    switch (newLink) {
         case "1":
             for (let i = 0; i < link.length; i++) {
                 let myLinks = `
@@ -52,7 +55,7 @@
             let newAuthor = prompt("Enter the link author:");
             if (!newUrl.startsWith("http://") || !newUrl.startsWith("https://")) {
              newUrl = `http://${newUrl}`;
-         }
+            }
 
             let newLink = {
             title : newTitle,
@@ -71,13 +74,12 @@
             break;
         case "3": 
         // Remove an existing link from array
-        let linkToRemove = Number(
-            prompt(`Enter the number of link to remove (0 to 3)`)
-        );
-        let removedLink = link.splice(linkToRemove--, 1);
+            let linkToRemove = Number(prompt(`Enter the number of link to remove (0 to 3)`));
+            let removedLink = link.splice(linkToRemove--, 1);
             alert(`link ${removedLink[0].title} removed succefully`);
             break;
         default:
-        alert('No thanks');
+        }
+        newLink = Number(prompt(menuLinks));
     }
 
